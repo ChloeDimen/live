@@ -1,6 +1,7 @@
 package com.dimen.live.pusher;
 
 import com.dimen.jni.PusherNative;
+import com.dimen.listener.LiveStateChangeListener;
 import com.dimen.params.AudioParams;
 import com.dimen.params.VideoParams;
 
@@ -40,11 +41,12 @@ public class LivePusher implements Callback {
 	/**
 	 * 开始推流
 	 */
-	public void startPusher(String url) {
+	public void startPusher(String url,LiveStateChangeListener liveStateChangeListener) {
 		// TODO Auto-generated method stub
 		videoPusher.startPush();
 		audioPusher.startPush();
 		pusherNative.startPush(url);
+		pusherNative.setLiveStateChangeListener(liveStateChangeListener);
 	}
 	
 	/**
@@ -54,6 +56,7 @@ public class LivePusher implements Callback {
 		videoPusher.stopPush();
 		audioPusher.stopPush();
 		pusherNative.stopPush();
+		pusherNative.removeLiveStateChangeListener();
 	}
 	/**
 	 * 释放资源

@@ -96,6 +96,7 @@ public class VideoPusher extends Pusher implements Callback, PreviewCallback {
 			//预览图像的画面宽高
 			pCamera.setPreviewSize(videoParams.getWidth(), videoParams.getHeight());
             //pCamera.setPreviewFpsRange(videoParams.getFps()-1, videoParams.getFps());
+			mCamera.setParameters(pCamera);
 			// 获取视频预览的数据
 			buffers = new byte[videoParams.getWidth() * videoParams.getHeight()
 					* 4];
